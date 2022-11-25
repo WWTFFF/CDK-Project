@@ -82,17 +82,17 @@ export class WWTFFFRestApiStack extends NestedStack {
     // 제품 목록 API 연결
     api.addLambdaRoute("/product/list", [HttpMethod.GET], getAllProductsFunc);
     // 카테고리 제품 목록 API 연결
-    // api.addLambdaRoute(
-    //   "/product/list/category/{category}",
-    //   [HttpMethod.GET],
-    //   getCategoryProductsFunc
-    // );
-    // // 제품 검색 API 연결
-    // api.addLambdaRoute(
-    //   "/product/list/search/{keyword}",
-    //   [HttpMethod.GET],
-    //   getSearchProductsFunc
-    // );
+    api.addLambdaRoute(
+      "/product/list/category/{category}",
+      [HttpMethod.GET],
+      getCategoryProductsFunc
+    );
+    // 제품 검색 API 연결
+    api.addLambdaRoute(
+      "/product/list/search/{keyword}",
+      [HttpMethod.GET],
+      getSearchProductsFunc
+    );
 
     api.addLambdaRoute("/test", [HttpMethod.GET], getTestFunc);
   }
