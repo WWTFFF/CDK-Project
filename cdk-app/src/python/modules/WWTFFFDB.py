@@ -1,5 +1,5 @@
 import boto3
-from boto3.dynamodb.conditions import Key
+from boto3.dynamodb.conditions import Key, Attr
 from modules.config import region_name, table_name
 from modules.util import resource_response_parse
 
@@ -32,8 +32,8 @@ class DB:
     # Select * from table_name where Keyword = 'Keyword';
     def selectByKeyword(self, t_name: str, keyword: str):
         table = self.tables[t_name]
-        query = {'KeyConditionExpression': Key('ProductName').eq(keyword)}
-        result = resource_response_parse(table.query(**query)['Items'])
+        query = {'FilterExpression': Attr('Category').ne('') & Attr('ProductName').contains(keyword)}
+        result = resource_response_parse(table.scan(**query)['Items'])
         return result
 
 
