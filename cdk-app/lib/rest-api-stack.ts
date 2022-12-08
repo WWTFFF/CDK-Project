@@ -76,7 +76,7 @@ export class WWTFFFRestApiStack extends NestedStack {
     // 제품 추천 API 연결
     api.addLambdaRoute(
       "/product/recommend",
-      [HttpMethod.POST],
+      [HttpMethod.GET],
       getRecommendedProductsFunc
     );
     // 제품 목록 API 연결
